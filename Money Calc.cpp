@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <iomanip>
 
 using namespace std;
 
@@ -61,10 +62,33 @@ vector<Dish> getDishes(int numDishes, int numPpl)
 
     return dishes;
     }
+
+    void displaySummary(const vector<string>& people, const vector<Dish>& dishes) {
+    cout << "\nSummary:" << endl;
+    vector<double> totalCosts(people.size(), 0.0);
+
+    for (const auto& dish : dishes) {
+        if (dish.type == "individual") {
+            int personIndex = dish.assignedPpl[0];
+            totalCosts[personIndex] += dish.price;
+            cout << dish.name << " ($" << fixed << setprecision(2) << dish.price << ") is assigned to " << people[personIndex] << "." << endl;
+        } else if (dish.type == "shared") {
+            double splitPrice = dish.price / dish.assignedPpl.size();
+            for (int personIndex : dish.assignedPpl) {
+                totalCosts[personIndex] += splitPrice;
+            }
+            cout << dish.name << " ($" << fixed << setprecision(2) << dish.price 
+                 << ") is shared among everyone ($" << splitPrice << " each)." << endl;
+        }
+    }
+
+    cout << "\nTotal cost per person:" << endl;
+    for (size_t i = 0; i < people.size(); ++i) {
+        cout << people[i] << ": $" << fixed << setprecision(2) << totalCosts[i] << endl;
+    }
 }
 
 int main()
 {
-
     return 0;
 }
