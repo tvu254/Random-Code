@@ -4,7 +4,38 @@
 
 using namespace std;
 
+struct Dish
+{
+    string name;
+    double price;
+    string type;
+    vector<int> assignedPpl;
+};
+
+vector<string> getPpl(int numPpl)
+{
+    vector<string> names(numPpl);
+    cin.ignore();
+
+    cout << "Enter the names of" << numPpl << " people:" << endl;
+    for (int i = 0; i <numPpl; ++i)
+    {
+        cout << "Person " << i + 1 << ": ";
+        getline(cin, names[i]);
+    }
+
+    return names;
+}
+
+vector<Dish> getDishes(int numDishes, int numPpl)
+{
+    vector<Dish> dishes(numDishes);
+
+    for (int i = 0 )
+}
+
 int main()
 {
- return 0;
+
+    return 0;
 }
