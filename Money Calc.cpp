@@ -90,5 +90,18 @@ vector<Dish> getDishes(int numDishes, int numPpl)
 
 int main()
 {
+    int numPpl, numDishes;
+
+    cout << "Enter the number of people: ";
+    cin >> numPpl;
+    vector<string> people = getPpl(numPpl);
+
+    cout << "\nEnter the number of dishes: ";
+    cin >> numDishes;
+    cin.ignore();
+    vector<Dish> dishes = getDishes(numDishes, numPpl);
+
+    displaySummary(people, dishes);
+    
     return 0;
 }
